@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.12.0.custom/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.12.0.custom/jquery-ui.theme.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="">
+<script type="text/javascript" src="lib/jquery-ui-1.12.0.custom/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="lib/jquery-ui-1.12.0.custom/jquery-ui.min.js"></script>    
+<script type="text/javascript" src="lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script type="text/template" id="boxTemplate">
+<div class="box ui-widget-content">
+	<p>Box</p>
+</div>
+</script>	
+<script type="text/javascript">
+	$(function() {
+		
+		$("#addBox").draggable({
+			zIndex: 100,
+			cursor: "move",
+			helper: function () {
+				return $($("#boxTemplate").html());
+			},
+			appendTo: ".droppable-panel",
+			distance: 10,
+			snap: true,
+			snapMode: "both",
+		});
+		
+		$(".droppable-panel").droppable({
+			accept: "#addBox",
+			drop: function(event, ui) {
+				$(this).append($(ui.helper).clone().draggable({
+					containment: "parent",
+					distance: 10,
+					snap: true,
+					snapMode: "both",
+					cursor: "move"
+					
+				}));
+			}
+			
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1">
+				<div class="panel panel-default panel-button">
+					<div id="button-panel" class="panel-body panel-button">
+						<div id="addBox" class="btn btn-primary">New Box</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="panel panel-default panel-place">
+					<div class="panel-body panel-place droppable-panel ui-widget-content ui-state-default">
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

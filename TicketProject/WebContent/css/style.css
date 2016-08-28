@@ -1,0 +1,15 @@
+.panel-place {
+	height: 100%;
+	width: 100%;
+}
+.box {
+	width: 150px; height: 150px; 
+}
+.panel-button {
+	height: 100%;
+	width: 100%;
+	direction: ltr;   
+}
+.template {
+	visibility: hidden;
+}
